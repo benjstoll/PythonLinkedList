@@ -9,6 +9,7 @@ class LinkedList:
         self.root = root
 
 
+    # Add to the beginning of the list
     def linked_list_prepend(self, data) -> None:
         current = self.root
         new_root = Node(data)
@@ -17,6 +18,7 @@ class LinkedList:
         self.root.next = current
 
 
+    # add to the end of the list
     def linked_list_append(self, data) -> None:
         current = self.root
 
@@ -26,6 +28,7 @@ class LinkedList:
         current.next = Node(data)
 
 
+    # return a string of all elements in order
     def traverse_list(self) -> str:
         traversal_string = ''
         current = self.root
@@ -41,7 +44,8 @@ class LinkedList:
         return traversal_string
 
 
-    def reverse_list(self):
+    # Reverse the order of the list
+    def reverse_list(self) -> None:
         current = self.root
         previous = None
         next = current.next
@@ -58,6 +62,30 @@ class LinkedList:
             next = current.next
 
 
+    # remove element from specified index
+    def remove_element(self, index: int) -> None:
+        current = self.root
+        current_index = 0
+
+        if index == 0:
+            self.root = self.root.next
+            return
+
+        while current != None:
+            if current_index + 1 == index and current.next and current.next.next:
+                current.next = current.next.next
+                break
+            elif current_index + 1 == index and current.next and not current.next.next:
+                current.next = None
+                break
+
+            current = current.next
+            current_index += 1
+
+            if current == None:
+                print(f'Could not find element at index {index}.')
+
+
 if __name__ == '__main__':
     my_list = LinkedList(Node(1))
 
@@ -72,6 +100,11 @@ if __name__ == '__main__':
     my_list.linked_list_prepend(9)
     my_list.linked_list_prepend(10)
     my_list.linked_list_prepend(11)
+
+    print(my_list.traverse_list())
+
+    my_list.remove_element(2)
+    my_list.remove_element(13)
 
     print(my_list.traverse_list())
 
