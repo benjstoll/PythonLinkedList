@@ -9,6 +9,14 @@ class LinkedList:
         self.root = root
 
 
+    def linked_list_prepend(self, data) -> None:
+        current = self.root
+        new_root = Node(data)
+
+        self.root = new_root
+        self.root.next = current
+
+
     def linked_list_append(self, data) -> None:
         current = self.root
 
@@ -58,6 +66,12 @@ if __name__ == '__main__':
     my_list.linked_list_append(4)
     my_list.linked_list_append(5)
     my_list.linked_list_append(6)
+
+    my_list.linked_list_prepend(7)
+    my_list.linked_list_prepend(8)
+    my_list.linked_list_prepend(9)
+    my_list.linked_list_prepend(10)
+    my_list.linked_list_prepend(11)
 
     print(my_list.traverse_list())
 
