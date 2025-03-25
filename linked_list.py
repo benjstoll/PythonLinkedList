@@ -31,7 +31,24 @@ class LinkedList:
             current = current.next
 
         return traversal_string
-    
+
+
+    def reverse_list(self):
+        current = self.root
+        previous = None
+        next = current.next
+
+        while current != None:
+            current.next = previous
+
+            if next == None:
+                self.root = current
+                break
+
+            previous = current
+            current = next
+            next = current.next
+
 
 if __name__ == '__main__':
     my_list = LinkedList(Node(1))
@@ -41,6 +58,10 @@ if __name__ == '__main__':
     my_list.linked_list_append(4)
     my_list.linked_list_append(5)
     my_list.linked_list_append(6)
+
+    print(my_list.traverse_list())
+
+    my_list.reverse_list()
 
     print(my_list.traverse_list())
             
